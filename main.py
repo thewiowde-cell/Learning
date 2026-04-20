@@ -85,14 +85,87 @@
 # print("Average price: ", average_price)
 # print("Max price: ", max_price)
 
-# Dicts
-# Task № 1
-users = [
-    {"name": "Иван", "age": 25},
-    {"name": "Мария", "age": 17},
-    {"name": "Алексей", "age": 30},
-    {"name": "Оля", "age": 16}
-]
+# # Dicts
+# # Task № 1
+# users = [
+#     {"name": "Иван", "age": 25},
+#     {"name": "Мария", "age": 17},
+#     {"name": "Алексей", "age": 30},
+#     {"name": "Оля", "age": 16}
+# ]
 
-adult_users = [user for user in users if user['age'] > 18]
-print("Adult users: ", adult_users)
+# adult_users = [user for user in users if user['age'] > 18]
+
+# names = [user['name'] for user in adult_users]
+# print("Adult user names:", names)
+
+# if adult_users:
+#     avg_age = sum(user['age'] for user in adult_users) / len(adult_users)
+#     print("Average age:", round(avg_age, 2))
+# else:
+#     print("No adult users found")
+
+# # # Task № 2
+# products = [
+#     {"name": "iPhone", "price": 500},
+#     {"name": "Samsung", "price": 450},
+#     {"name": "Xiaomi", "price": 300},
+#     {"name": "iPhone", "price": 500}
+# ]
+
+# unique_products = {
+#     (p['name'], p['price']): p
+#     for p in products
+# }.values()
+
+# unique_products = list(unique_products)
+
+# if unique_products:
+#     most_expensive = max(unique_products, key=lambda x: x['price'])
+#     avg_price = sum(p['price'] for p in unique_products) / len(unique_products)
+
+#     print("Most expensive:", most_expensive)
+#     print("Average price:", round(avg_price, 2))
+# else:
+#     print("No products found")
+
+# # Task № 3
+# data = [
+#     "iPhone - 500$",
+#     "Samsung - 450$",
+#     "Xiaomi - 300$"
+# ]
+
+# product_list = []
+
+# for item in data:
+#     try:
+#         name, price = item.replace('$', '').split(' - ')
+#         price = int(price)
+
+#         product_list.append({
+#             'name': name,
+#             'price': round(price * 1.1)
+#         })
+
+#     except Exception as e:
+#         print(f"Error processing item: {item}")
+
+# print("Product list: ", product_list)
+
+# # Task № 4
+# from collections import defaultdict
+
+# data = [
+#     {"category": "phone", "price": 500},
+#     {"category": "laptop", "price": 1000},
+#     {"category": "phone", "price": 300},
+#     {"category": "laptop", "price": 1500}
+# ]
+
+# category_prices = defaultdict(list)
+
+# for item in data:
+#     category_prices[item['category']].append(item['price'])
+
+# print("Category prices: ", category_prices)
