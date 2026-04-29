@@ -80,7 +80,6 @@
 # average_price = sum([p[1] for p in unique_products]) / len(unique_products)
 # max_price = max(unique_products, key=lambda x: x[1])
 
-
 # print("Unique products: ", unique_products)
 # print("Average price: ", average_price)
 # print("Max price: ", max_price)
@@ -169,3 +168,83 @@
 #     category_prices[item['category']].append(item['price'])
 
 # print("Category prices: ", category_prices)
+
+# # Task № 5
+# data = [
+#     {"name": "Company A", "email": "a@mail.com"},
+#     {"name": "Company B", "email": None},
+#     {"name": "Company C", "email": "c@mail.com"},
+#     {"name": "Company A", "email": "a@mail.com"}
+# ]
+
+# unique_companies = {}
+# unique_emails = set()
+
+# for item in data:
+#     name = item['name']
+#     email = item['email']
+
+#     if not email:
+#         continue
+
+#     unique_emails.add(email)
+
+#     if name not in unique_companies:
+#         unique_companies[name] = [email]
+
+# print("Only_emails: ", list(unique_emails))
+
+# # Mini Challenge
+# from collections import defaultdict
+
+# orders = [
+#     {"user": "Иван", "amount": 100},
+#     {"user": "Мария", "amount": 200},
+#     {"user": "Иван", "amount": 50}
+# ]
+
+# individual_expenses = defaultdict(int)
+
+# for human in orders:
+#     individual_expenses[human['user']] += human['amount']
+
+#     if not human['user'] or not isinstance(human['amount'], (int, float)):
+#         continue
+
+# print("Individual expenses: ", dict(individual_expenses))
+
+from pathlib import Path
+
+files_dir = Path('files')
+files_dir.mkdir(exist_ok=True)
+
+first_file = files_dir / 'first.txt'
+second_file = files_dir / 'second.txt'
+
+with open(first_file, 'w') as my_file:
+    my_file.write("First string\n")
+    my_file.write("Second string\n")
+    my_file.write("Third string\n")
+
+
+with open(second_file, 'w') as my_file:
+    lines = [
+        "First line in the second file",
+        "Second line in the second file",
+        "Third line in the second file",
+    ]
+
+    for line in lines:
+        my_file.write(line + '\n')
+
+with open(first_file) as my_file:
+    print(my_file.read())
+
+with open(second_file) as my_file:
+    for line in my_file:
+        print(line.strip())
+
+first_file.unlink()
+second_file.unlink()
+
+files_dir.rmdir()
