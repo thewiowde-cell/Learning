@@ -213,38 +213,60 @@
 
 # print("Individual expenses: ", dict(individual_expenses))
 
-from pathlib import Path
+# # Working with files
+# from pathlib import Path
 
-files_dir = Path('files')
-files_dir.mkdir(exist_ok=True)
+# files_dir = Path('files')
+# files_dir.mkdir(exist_ok=True)
 
-first_file = files_dir / 'first.txt'
-second_file = files_dir / 'second.txt'
+# first_file = files_dir / 'first.txt'
+# second_file = files_dir / 'second.txt'
 
-with open(first_file, 'w') as my_file:
-    my_file.write("First string\n")
-    my_file.write("Second string\n")
-    my_file.write("Third string\n")
+# with open(first_file, 'w') as my_file:
+#     my_file.write("First string\n")
+#     my_file.write("Second string\n")
+#     my_file.write("Third string\n")
 
 
-with open(second_file, 'w') as my_file:
-    lines = [
-        "First line in the second file",
-        "Second line in the second file",
-        "Third line in the second file",
-    ]
+# with open(second_file, 'w') as my_file:
+#     lines = [
+#         "First line in the second file",
+#         "Second line in the second file",
+#         "Third line in the second file",
+#     ]
 
-    for line in lines:
-        my_file.write(line + '\n')
+#     for line in lines:
+#         my_file.write(line + '\n')
 
-with open(first_file) as my_file:
-    print(my_file.read())
+# with open(first_file) as my_file:
+#     print(my_file.read())
 
-with open(second_file) as my_file:
-    for line in my_file:
-        print(line.strip())
+# with open(second_file) as my_file:
+#     for line in my_file:
+#         print(line.strip())
 
-first_file.unlink()
-second_file.unlink()
+# first_file.unlink()
+# second_file.unlink()
 
-files_dir.rmdir()
+# files_dir.rmdir()
+
+import csv
+
+with open('test.csv', 'w') as csv_file:
+    writer = csv.writer(csv_file, delimiter=';')
+    writer.writerow(['user_id', 'user_name', 'comments_qty'])
+    writer.writerow([5432, 'Mikhail', 1234])
+    writer.writerow([8378, 'Lenin', 212])
+    writer.writerow([1347, 'Stalin', 21])
+
+with open('test.csv') as csv_file:
+    reader = csv.reader(csv_file, delimiter=';')
+    for line in reader:
+        if line:
+            converted_line = []
+            for item in line:
+                try:
+                    converted_line.append(int(item))
+                except ValueError:
+                    converted_line.append(item)
+            print(converted_line)
