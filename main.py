@@ -250,23 +250,58 @@
 
 # files_dir.rmdir()
 
-import csv
+# import csv
 
-with open('test.csv', 'w') as csv_file:
-    writer = csv.writer(csv_file, delimiter=';')
-    writer.writerow(['user_id', 'user_name', 'comments_qty'])
-    writer.writerow([5432, 'Mikhail', 1234])
-    writer.writerow([8378, 'Lenin', 212])
-    writer.writerow([1347, 'Stalin', 21])
+# with open('test.csv', 'w') as csv_file:
+#     writer = csv.writer(csv_file, delimiter=';')
+#     writer.writerow(['user_id', 'user_name', 'comments_qty'])
+#     writer.writerow([5432, 'Mikhail', 1234])
+#     writer.writerow([8378, 'Lenin', 212])
+#     writer.writerow([1347, 'Stalin', 21])
 
-with open('test.csv') as csv_file:
-    reader = csv.reader(csv_file, delimiter=';')
-    for line in reader:
-        if line:
-            converted_line = []
-            for item in line:
-                try:
-                    converted_line.append(int(item))
-                except ValueError:
-                    converted_line.append(item)
-            print(converted_line)
+# with open('test.csv') as csv_file:
+#     reader = csv.reader(csv_file, delimiter=';')
+#     for line in reader:
+#         if line:
+#             converted_line = []
+#             for item in line:
+#                 try:
+#                     converted_line.append(int(item))
+#                 except ValueError:
+#                     converted_line.append(item)
+#             print(converted_line)
+
+# def image_info(my_dict):
+#     if not isinstance(my_dict, dict):
+#         raise ValueError("This argument is not a dictionary")
+
+#     keys_dict = my_dict.keys()
+
+#     if 'image_id' not in keys_dict and 'image_title' not in keys_dict:
+#         raise TypeError(
+#             "The keys 'image_id' and 'image_title' is not present in this argument")
+
+#     if 'image_id' not in keys_dict:
+#         raise TypeError("The key 'image_id' is not present in this argument")
+
+#     if 'image_title' not in keys_dict:
+#         raise TypeError(
+#             "The key 'image_title' is not present in this argument")
+
+#     return print(f"Image {my_dict['image_title']} has id {my_dict['image_id']}")
+
+
+# first_dict = {'image_id': 5136, 'image_title': 'my cat', 'name': 'Mikhail'}
+# second_dict = {'image_title': 'my cat'}
+# third_dict = {'image_id': 5136}
+# fourth_dict = {}
+# notdict = 1
+
+# try:
+#     # image_info(first_dict)
+#     # image_info(second_dict)
+#     # image_info(third_dict)
+#     # image_info(fourth_dict)
+#     image_info(notdict)
+# except Exception as e:
+#     print(e)
