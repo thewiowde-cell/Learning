@@ -250,21 +250,21 @@
 
 # files_dir.rmdir()
 
-import csv
+# import csv
 
-with open('test.csv', 'w', newline='') as csv_file:
-    writer = csv.writer(csv_file, delimiter=';')
-    writer.writerow(['user_id', 'user_name', 'comments_qty'])
-    writer.writerow([5432, 'Mikhail', 1234])
-    writer.writerow([8378, 'Lenin', 212])
-    writer.writerow([1347, 'Stalin', 21])
+# with open('test.csv', 'w', newline='') as csv_file:
+#     writer = csv.writer(csv_file, delimiter=';')
+#     writer.writerow(['user_id', 'user_name', 'comments_qty'])
+#     writer.writerow([5432, 'Mikhail', 1234])
+#     writer.writerow([8378, 'Lenin', 212])
+#     writer.writerow([1347, 'Stalin', 21])
 
-with open('test.csv', newline='') as csv_file:
-    reader = csv.reader(csv_file, delimiter=';')
-    for line in reader:
-        print(line)
+# with open('test.csv', newline='') as csv_file:
+#     reader = csv.reader(csv_file, delimiter=';')
+#     for line in reader:
+#         print(line)
 
-    print(reader.line_num)
+#     print(reader.line_num)
 
 # def image_info(my_dict):
 #     if not isinstance(my_dict, dict):
@@ -301,38 +301,52 @@ with open('test.csv', newline='') as csv_file:
 # except Exception as e:
 #     print(e)
 
-# import csv
+import csv
 
 
-# def process_item(item):
-#     clean_name = item.strip()
+def process_item(item):
+    clean_name = item.strip()
 
-#     if not clean_name:
-#         return None
+    if not clean_name:
+        return None
 
-#     return {
-#         "query": clean_name,
-#         "lenght": len(clean_name)
-#     }
-
-
-# with open('links.txt', 'w') as my_file:
-#     my_file.write('apple\n')
-#     my_file.write('banana\n')
-#     my_file.write('orange\n')
-
-# try:
-#     processed_data = []
-
-#     with open('links.txt', encoding='utg-8') as my_file:
-#         for line in my_file:
-#             result = process_item(line)
-
-#             if result:
-#                 processed_data.append(result)
-
-#     with open('results.csv', 'w', )
+    return {
+        'query': clean_name,
+        'length': len(clean_name)
+    }
 
 
-# except Exception as e:
-#     pass
+def read_file(filename):
+    with open(filename, encoding='utf-8') as file:
+        return file.readlines()
+
+
+def write_csv(filename, data):
+    with open(filename, 'w', newline='', encoding='utf-8') as csv_file:
+        fieldnames = ['query', 'length']
+        writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
+
+        writer.writeheader()
+        writer.writerows(data)
+
+
+def main():
+    try:
+        lines = read_file('links.txt')
+
+        processed_data = []
+        for line in lines:
+            result = process_item(line)
+            if result:
+                processed_data.append(result)
+
+        write_csv('results.csv', processed_data)
+
+    except FileNotFoundError:
+        print("Файл не найден")
+    except Exception as e:
+        print(f"Ошибка: {e}")
+
+
+if __name__ == "__main__":
+    main()
