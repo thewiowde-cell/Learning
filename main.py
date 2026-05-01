@@ -250,26 +250,21 @@
 
 # files_dir.rmdir()
 
-# import csv
+import csv
 
-# with open('test.csv', 'w') as csv_file:
-#     writer = csv.writer(csv_file, delimiter=';')
-#     writer.writerow(['user_id', 'user_name', 'comments_qty'])
-#     writer.writerow([5432, 'Mikhail', 1234])
-#     writer.writerow([8378, 'Lenin', 212])
-#     writer.writerow([1347, 'Stalin', 21])
+with open('test.csv', 'w', newline='') as csv_file:
+    writer = csv.writer(csv_file, delimiter=';')
+    writer.writerow(['user_id', 'user_name', 'comments_qty'])
+    writer.writerow([5432, 'Mikhail', 1234])
+    writer.writerow([8378, 'Lenin', 212])
+    writer.writerow([1347, 'Stalin', 21])
 
-# with open('test.csv') as csv_file:
-#     reader = csv.reader(csv_file, delimiter=';')
-#     for line in reader:
-#         if line:
-#             converted_line = []
-#             for item in line:
-#                 try:
-#                     converted_line.append(int(item))
-#                 except ValueError:
-#                     converted_line.append(item)
-#             print(converted_line)
+with open('test.csv', newline='') as csv_file:
+    reader = csv.reader(csv_file, delimiter=';')
+    for line in reader:
+        print(line)
+
+    print(reader.line_num)
 
 # def image_info(my_dict):
 #     if not isinstance(my_dict, dict):
@@ -305,3 +300,39 @@
 #     image_info(notdict)
 # except Exception as e:
 #     print(e)
+
+# import csv
+
+
+# def process_item(item):
+#     clean_name = item.strip()
+
+#     if not clean_name:
+#         return None
+
+#     return {
+#         "query": clean_name,
+#         "lenght": len(clean_name)
+#     }
+
+
+# with open('links.txt', 'w') as my_file:
+#     my_file.write('apple\n')
+#     my_file.write('banana\n')
+#     my_file.write('orange\n')
+
+# try:
+#     processed_data = []
+
+#     with open('links.txt', encoding='utg-8') as my_file:
+#         for line in my_file:
+#             result = process_item(line)
+
+#             if result:
+#                 processed_data.append(result)
+
+#     with open('results.csv', 'w', )
+
+
+# except Exception as e:
+#     pass
