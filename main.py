@@ -301,52 +301,110 @@
 # except Exception as e:
 #     print(e)
 
-import csv
+# # Demo parsing
+# # Task № 1
+# import csv
 
 
-def process_item(item):
-    clean_name = item.strip()
+# def process_item(item):
+#     clean_name = item.strip()
 
-    if not clean_name:
-        return None
+#     if not clean_name:
+#         return None
 
-    return {
-        'query': clean_name,
-        'length': len(clean_name)
-    }
-
-
-def read_file(filename):
-    with open(filename, encoding='utf-8') as file:
-        return file.readlines()
+#     return {
+#         'query': clean_name,
+#         'length': len(clean_name)
+#     }
 
 
-def write_csv(filename, data):
-    with open(filename, 'w', newline='', encoding='utf-8') as csv_file:
-        fieldnames = ['query', 'length']
-        writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
-
-        writer.writeheader()
-        writer.writerows(data)
+# def read_file(filename):
+#     with open(filename, encoding='utf-8') as file:
+#         return file.readlines()
 
 
-def main():
-    try:
-        lines = read_file('links.txt')
+# def write_csv(filename, data):
+#     with open(filename, 'w', newline='', encoding='utf-8') as csv_file:
+#         fieldnames = ['query', 'length']
+#         writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
 
-        processed_data = []
-        for line in lines:
-            result = process_item(line)
-            if result:
-                processed_data.append(result)
-
-        write_csv('results.csv', processed_data)
-
-    except FileNotFoundError:
-        print("Файл не найден")
-    except Exception as e:
-        print(f"Ошибка: {e}")
+#         writer.writeheader()
+#         writer.writerows(data)
 
 
-if __name__ == "__main__":
-    main()
+# def main():
+#     try:
+#         lines = read_file('links.txt')
+
+#         processed_data = []
+#         for line in lines:
+#             result = process_item(line)
+#             if result:
+#                 processed_data.append(result)
+
+#         write_csv('results.csv', processed_data)
+
+#     except FileNotFoundError:
+#         print("Файл не найден")
+#     except Exception as e:
+#         print(f"Ошибка: {e}")
+
+
+# if __name__ == "__main__":
+#     main()
+
+# # Task № 2
+# import re
+
+
+# def parse_item(item):
+#     if not item:
+#         return None
+
+#     match = re.search(r'(.+?)\s*-\s*\$?(\d+)', item)
+
+#     if not match:
+#         return None
+
+#     name = match.group(1).strip().title()
+#     price = int(match.group(2))
+
+#     return {'name': name, 'price': price, }
+
+
+# def main():
+#     data = [
+#         "  iPhone 13 - 500$ ",
+#         "Samsung S21-450$",
+#         "Xiaomi Mi 11 - 300 $",
+#         "iPhone 13 - 500$",
+#         "Nokia - ???$",
+#         "",
+#         None,
+#         "  MacBook Air - 1000$",
+#         "macbook air - 1000$"
+#     ]
+
+#     processed = []
+
+#     for item in data:
+#         result = parse_item(item)
+#         if result:
+#             processed.append(result)
+
+#     unique = {item['name']: item for item in processed}
+#     unique = list(unique.values())
+
+#     prices = [item['price'] for item in unique]
+
+#     if prices:
+#         avg = sum(prices) / len(prices)
+#         max_price = max(prices)
+
+#         print("Data:", unique)
+#         print("Average:", round(avg, 2))
+#         print("Max:", max_price)
+
+
+# if __name__ == "__main__":
+#     main()
